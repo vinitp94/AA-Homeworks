@@ -77,46 +77,79 @@
 	};
 	
 	View.prototype.exercise0 = function () {
+	  //Challenge: (example) remove the 'square' class from every li
+	  //Result: this should cause the grid to turn into a long list of undecorated lis
+	  //just a list of dots
+	
+	  //this one completed as an example :) no additional code necessary
 	  $('li').removeClass("square");
 	};
 	
-	View.prototype.exercise1 = function() {
-	  $("li").addClass("orange");
+	View.prototype.exercise1 = function () {
+	  //Challenge: Give every square the class 'orange'
+	  //Result: Every square should turn orange (we already have a CSS rule)
+	
+	  $('li').addClass("orange");
 	};
 	
-	View.prototype.exercise2 = function() {
+	View.prototype.exercise2 = function () {
+	  //Challenge: Remove every square
+	  //Result: Every square vanishes
+	
 	  $('.square').remove();
 	};
 	
-	View.prototype.exercise3 = function() {
-	  const h1 = $("<h1>").text("I love jQuery");
-	  $("#easel").append(h1);
+	View.prototype.exercise3 = function () {
+	  //Challenge: Add an <h1> with the text 'i love jquery' under the grid.
+	  //Result: An <h1> with the text 'i love jquery' appears under the grid.
+	
+	  let h1 = $('<h1>').text('I love jquery');
+	  $('#easel').append(h1);
 	};
 	
-	View.prototype.exercise4 = function() {
-	  $(".square:nth-child(even)").text("Jeff");
-	  //this could also be solved using iteration and %
+	View.prototype.exercise4 = function () {
+	  //Challenge: Write your first name in every other square.
+	  //Result: Your name appears in every other square.
+	
+	  $('.square:nth-child(even)').text('Vin');
 	};
 	
-	View.prototype.exercise5 = function() {
-	  //hint: look at line 98 of this file: we set the 'data-pos' of every square
+	View.prototype.exercise5 = function () {
+	  //Challenge: Alert the row and column of the square, when the square is clicked.
+	  //Result: When a square is clicked, the row and column appear in an alert. for
+	  //example: clicking the top left square should alert '0, 0'.
+	
+	  //hint: checkout the addRow function at the bottom of the file: we set the
+	  //  'data-pos' of every square
+	
 	  $('.square').on("click", e => {
 	    const $sq = $(e.currentTarget);
 	    alert($sq.attr("data-pos"));
 	  });
 	};
 	
-	View.prototype.exercise6 = function() {
+	View.prototype.exercise6 = function () {
+	  //Challenge: Give every square a random color!
+	  //Result: Every square becomes a color as soon as this code runs. The grid
+	  //should become a beautiful rainbow of colors.
+	
+	  //hint: use window._randomColorString() (defined at top) to get a random color!
+	
 	  $('.square').each( (idx, el) => {
 	    var $sq = $(el);
-	    $sq.css("background-color", _randomColorString());
-	  })
+	    $sq.css("background-color", window._randomColorString());
+	  });
 	};
 	
-	View.prototype.exercise7 = function() {
+	View.prototype.exercise7 = function(){
+	  //Challenge: When your mouse goes over a square, console log its color.
+	  //Result: When the mouse goes over a square its color should appear in the
+	  //console. The color won't be the color's name, but its rbg value.
+	  //You should push the button for exercise 6 first to try it on the
+	  //rainbow.
+	
 	  $('#easel').on("mouseenter", ".square", e => {
 	    const $sq = $(e.currentTarget);
-	    console.log($sq.css("background-color"));
 	  });
 	};
 	
