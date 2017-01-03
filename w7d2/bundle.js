@@ -21500,11 +21500,22 @@
 	var configureStore = function configureStore() {
 	  var preloadedState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 	
-	  var store = (0, _redux.createStore)(_root_reducer2.default, preloadedState);
+	  var store = (0, _redux.createStore)(_root_reducer2.default, preloadedState, (0, _redux.applyMiddleware)(addLoggingToDispatch));
 	  store.subscribe(function () {
 	    localStorage.state = JSON.stringify(store.getState());
 	  });
 	  return store;
+	};
+	
+	var addLoggingToDispatch = function addLoggingToDispatch(store) {
+	  return function (next) {
+	    return function (action) {
+	      console.log(store.getState());
+	      console.log(action);
+	      store.dispatch(action);
+	      console.log(store.getState());
+	    };
+	  };
 	};
 	
 	exports.default = configureStore;
